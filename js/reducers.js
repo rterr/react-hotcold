@@ -6,7 +6,7 @@ var initialGameState = {
   myNum: 0,
   numHotness: '',
   guessCount: 0,
-  guessSet: []
+  guessSet: [1, 2, 3]
 };
 
 var gameController = function(state, action) {
@@ -32,11 +32,13 @@ var gameController = function(state, action) {
       else {
         numRating = 'You win!'
       }
+      console.log('randNum is', state.randNum);
       console.log('userNum is', action.userNum);
       console.log('numRating is', numRating);
 
-      var afterSet = state.guessSet.slice();
-      afterSet = afterSet.concat([action.userNum]);
+      var initSet = state.guessSet.slice();
+      console.log('initSet is', initSet);
+      var afterSet = initSet.concat([action.userNum]);
       console.log('afterSet is', afterSet);
 
       var guessCounter = state.guessCount++;
