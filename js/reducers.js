@@ -6,7 +6,7 @@ var initialGameState = {
   myNum: 0,
   numHotness: '',
   guessCount: 0,
-  guessSet: [1, 2, 3]
+  guessSet: []
 };
 
 var gameController = function(state, action) {
@@ -41,7 +41,8 @@ var gameController = function(state, action) {
       var afterSet = initSet.concat([action.userNum]);
       console.log('afterSet is', afterSet);
 
-      var guessCounter = state.guessCount++;
+
+      var guessCounter = state.guessCount + 1
 
       var newState = update(state, {
         myNum: {$set: action.userNum},
@@ -49,6 +50,8 @@ var gameController = function(state, action) {
         guessSet: {$set: afterSet},
         guessCount: {$set: guessCounter}
       });
+
+      return newState;
     };
 
     if (action.type === actions.START_NEWGAME){
